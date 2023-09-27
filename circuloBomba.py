@@ -4,7 +4,7 @@ class circuloException(Exception):
     def __init__(self,mensagem):
         super().__init__(mensagem)
 
-
+#classe que cria os links
 class No:
     def __init__(self, carga:any):
         self.__carga = carga
