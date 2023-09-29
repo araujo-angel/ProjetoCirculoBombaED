@@ -50,7 +50,7 @@ class No:
 
 class circulo:
     """
-    Classe composta pelas funcinalidades do jogo em sí.
+    Classe composta pelas funcinalidades do jogo em si.
     """
 
     def __init__(self):
@@ -131,6 +131,7 @@ class circulo:
                 contador+=1
 
             carga = cursor.carga
+            PilhaDeEliminados(cursor)
 
             if( posicao == 1):
                 self.__head = cursor.prox
@@ -139,6 +140,7 @@ class circulo:
 
             self.__tamanho -= 1
             return carga
+
         
         except AssertionError as ae:
             raise circuloException(ae)
