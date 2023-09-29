@@ -2,10 +2,17 @@ from removidos import PilhaDeRemovidos
 
 class circuloException(Exception):
     def __init__(self,mensagem):
+        """
+        Construtor padrão da classe que recebe uma mensagem que se deseja embutir na exceção.
+        """
         super().__init__(mensagem)
 
 
 class No:
+    """
+    Classe de objetos para um nó dinâmico na mémoria. Neste caso, está adaptado para sustentar a lógica circular que o jogo Círculo da Bomba nessecita para funcionar.
+   
+    """
     def __init__(self, carga:any):
         self.__carga = carga
         self.__prox = None
@@ -42,6 +49,9 @@ class No:
 
 
 class circulo:
+    """
+    Classe composta pelas funcinalidades do jogo em sí.
+    """
 
     def __init__(self):
         self.__head = None
@@ -55,7 +65,7 @@ class circulo:
 
     def elemento(self, posicao:int)->any:
         try:
-            assert self.estaVazia() == False, 'Não há ninguém'
+            assert self.estaVazia() == False, 'Não há ninguém!'
             assert posicao > 0 and posicao <= len(self), f'Posição {posicao} é inválida para o círculo com {len(self)} pessoas.'
 
             contador = 1
@@ -70,7 +80,7 @@ class circulo:
 
     def inserir(self, posicao:int, carga:any):
         try:
-            assert posicao > 0 and posicao <= len(self)+1, f'Posição {posicao} é inválida para a circulo com {len(self)} pessoas'
+            assert posicao > 0 and posicao <= len(self)+1, f'Posição {posicao} é inválida para a circulo com {len(self)} pessoas.'
 
             # CONDICAO 1: insercao se a circulo estiver vazio
             if (self.estaVazia()):
@@ -78,7 +88,7 @@ class circulo:
                 self.__tamanho += 1
                 return
             
-            # CONDICAO 2: insercao na primeira posicao em uma circulo nao vazio
+            # CONDICAO 2: insercao na primeira posicao em uma círculo com pelo menos uma pessoa.
             if ( posicao == 1):
                 novo = No(carga)
                 novo.prox = self.__head
@@ -86,7 +96,7 @@ class circulo:
                 self.__tamanho += 1
                 return
 
-            # CONDICAO 3: insercao apos a primeira posicao em circulo nao vazio
+            # CONDICAO 3: insercao após a primeira posicao em circulo nao vazio
             cursor = self.__head
             contador = 1
             while ( contador < posicao-1):
@@ -100,6 +110,11 @@ class circulo:
 
         except AssertionError:
             raise circuloException(f'A posicao não pode ser um número negativo ou 0 (zero)')
+        
+    def inicializador(self, play:str):
+        for i in range(4,13+1):
+            print(self)
+
 
 
     def remover(self, posicao:int)->any:
@@ -129,7 +144,7 @@ class circulo:
         
         
     def __str__(self)->str:
-        s = 'head->[ '
+        s = 'Participantes -> [ '
         cursor = self.__head
         while( cursor is not None ):
             s += f'{cursor.carga}, '

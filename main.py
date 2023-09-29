@@ -1,20 +1,22 @@
-from circuloBomba import Lista, ListaException
+from circuloBomba import circulo, circuloException
 
-rodada1 = Lista()
+rodada1 = circulo()
+"""
+Instancia o primeiro objeto da classe circulo. Aqui definido como a primeira rodada do jogo.
 
-# print(rodada1)
-
-if rodada1.estaVazia():
-    print('rodada1 esta vazia.')
-
-qtdJogadores = int(input('Diga a quantidade de jogadores: '))
+"""
 
 try:
+    qtdVencedores = int(input('Diga a quantidade de vencedores no jogo: '))
+
+    qtdJogadores = int(input('Diga a quantidade de jogadores: '))
     for i in range(1,qtdJogadores+1):
         rodada1.inserir(i, input('Jogador: '))
     print(rodada1)
 
 
+#if rodada1.estaVazia():
+#  print('rodada1 esta vazia.')
 #     carga = rodada1.remover(1)
 #     print('Carga removida:', carga)
 #     print(rodada1)
