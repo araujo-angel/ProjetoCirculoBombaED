@@ -1,4 +1,4 @@
-from removidos import PilhaDeRemovidos
+from eliminados import PilhaDeEliminados
 
 class circuloException(Exception):
     def __init__(self,mensagem):
@@ -81,6 +81,7 @@ class circulo:
     def inserir(self, posicao:int, carga:any):
         try:
             assert posicao > 0 and posicao <= len(self)+1, f'Posição {posicao} é inválida para a circulo com {len(self)} pessoas.'
+            assert carga != int or carga != float
 
             # CONDICAO 1: insercao se a circulo estiver vazio
             if (self.estaVazia()):
@@ -109,7 +110,7 @@ class circulo:
             self.__tamanho += 1
 
         except AssertionError:
-            raise circuloException(f'A posicao não pode ser um número negativo ou 0 (zero)')
+            raise circuloException(f'Digite um nome válido.')
         
     def inicializador(self, play:str):
         for i in range(4,13+1):
