@@ -1,11 +1,11 @@
 import numpy as np
 
-class PilhaException(Exception):
+class PilhaDeEliminadosException(Exception):
     def __init__(self,msg):
         super().__init__(msg)
 
 
-class PilhaDeRemovidos:
+class PilhaDeEliminados:
     def __init__(self, size:int=10):
         self.__dado = np.full(size,None)
         self.__topo = -1
@@ -19,13 +19,13 @@ class PilhaDeRemovidos:
     def elemento(self, posicao:int)->any:
         try:
             if self.estaVazia():
-                raise PilhaException(f'Ninguém perdeu, ainda!')
+                raise PilhaDeEliminados(f'Ninguém perdeu... Ainda!')
             assert posicao > 0 and posicao <= self.__topo + 1
             return self.__dado[posicao-1]
         except TypeError:
-            raise PilhaException(f'O tipo de dado para posicao não é um número inteiro')
+            raise PilhaDeEliminados(f'O tipo de dado para posicao não é um número inteiro')
         except AssertionError:
-            raise PilhaException(f'A posicao deve ser um número maior que zero e menor igual a {self.__topo+1}')
+            raise PilhaDeEliminados(f'A posicao deve ser um número maior que zero e menor igual a {self.__topo+1}')
         except:
             raise
 
@@ -33,20 +33,20 @@ class PilhaDeRemovidos:
         try:
             return self.__dado[-1]
         except IndexError:
-            raise PilhaException(f'Não há perdedores até o momento!')
+            raise PilhaDeEliminados(f'Não há participantes eliminados até o momento!')
         except:
             raise
 
 
     def empilha(self, carga:any):
         #if self.__topo == len(self.__dado) - 1:
-            #raise PilhaException(f'.') Sai?
+            #raise PilhaDeEliminados(f'.') Sai?
         self.__topo += 1
         self.__dado[self.__topo] = carga
 
     
     def __str__(self):
-        s = 'Removidos: ['
+        s = 'Eliminados: ['
         for i in range(self.__topo+1):
             s += str(self.__dado[i]) + ','
         s = s.rstrip(',') # remove a última vírgula
