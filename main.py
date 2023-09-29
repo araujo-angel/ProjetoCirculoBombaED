@@ -13,7 +13,9 @@ try:
     for i in range(1,qtdJogadores+1):
         rodada1.inserir(i, input('Jogador: '))
     print(rodada1)
-
+    
+except circuloException as ae:
+    print(ae)
 
 #if rodada1.estaVazia():
 #  print('rodada1 esta vazia.')
@@ -29,8 +31,6 @@ try:
 #     for i in range(15):
 #         print('removendo:', rodada1.remover(1))
 #     print(rodada1)
-except ListaException as ae:
-    print(ae)
 #print(rodada1)
 
 # print('Tamanho de rodada1:', len(rodada1))
