@@ -1,18 +1,9 @@
-from pilhaSequencial import Pilha
-
-class circuloException(Exception):
+class ListaException(Exception):
     def __init__(self,mensagem):
-        """
-        Construtor padrão da classe que recebe uma mensagem que se deseja embutir na exceção.
-        """
         super().__init__(mensagem)
 
-#classe que cria os links
+
 class No:
-    """
-    Classe de objetos para um nó dinâmico na mémoria. Neste caso, está adaptado para sustentar a lógica circular que o jogo Círculo da Bomba nessecita para funcionar.
-   
-    """
     def __init__(self, carga:any):
         self.__carga = carga
         self.__prox = None
@@ -23,20 +14,20 @@ class No:
         return self.__carga
     
     @property
-    def ant(self):
-        return self.__ant
-
-    @property
     def prox(self):
         return self.__prox
+    
+    @property
+    def ant(self):
+        return self.__ant
 
     @carga.setter
     def carga(self, novaCarga):
         self.__carga = novaCarga
-
+    
     @ant.setter
-    def ant(self, novoAnt):
-        self.__ant = novoAnt
+    def ant(self, novaAnt):
+        self.__carga = novaAnt
 
     @prox.setter
     def prox(self, novoProx):
@@ -48,12 +39,20 @@ class No:
 
 
 
-class circulo:
-    """
-    Classe composta pelas funcinalidades do jogo em sí.
-    """
+class Lista:
+    """A classe Pilha implementa a estrutura de dados "Pilha".
+       Técnica: <Encadeamento/Sequencial>
+       A classe foi desenvolvida de maneira a permitir que qualquer tipo de dado
+       seja armazenado como carga de um nó.
 
+     Atributos:
+     ---------------------
+        *definir a lista de atributos*
+    """
     def __init__(self):
+        """ Construtor padrão da classe Pilha sem argumentos. Ao instanciar
+            um objeto do tipo Pilha, esta iniciará vazia. 
+        """
         self.__head = None
         self.__tamanho = 0
         
@@ -65,31 +64,44 @@ class circulo:
 
     def elemento(self, posicao:int)->any:
         try:
-            assert self.estaVazia() == False, 'Não há ninguém!'
-            assert posicao > 0 and posicao <= len(self), f'Posição {posicao} é inválida para o círculo com {len(self)} pessoas.'
+            assert self.estaVazia() == False, 'Pilha está vazia'
+            assert posicao > 0 and posicao <= len(self), f'Posição {posicao} é inválida para a pilha com {len(self)} elementos'
 
             contador = 1
             cursor = self.__head
-            while(len(self) > 1):
+            while( cursor is not None ):
                 if contador == posicao:
                     return cursor.carga
                 cursor = cursor.prox
                 contador += 1            
         except AssertionError as ae:
-            raise circuloException(ae)
+            raise ListaException(ae)
+                
+    def busca(self, key:any)->int:
+        if (self.estaVazia()):
+            raise ListaException('Pilha está vazia')
+        contador = 1
+        cursor = self.__head
+        while( cursor is not None ):
+            if cursor.carga == key:
+                return contador
+            cursor = cursor.prox
+            contador += 1
+        raise ListaException(f'A chave {key} não está presente na pilha')
+
+
 
     def inserir(self, posicao:int, carga:any):
         try:
-            assert posicao > 0 and posicao <= len(self)+1, f'Posição {posicao} é inválida para a circulo com {len(self)} pessoas.'
-            assert carga != int or carga != float
+            assert posicao > 0 and posicao <= len(self)+1, f'Posição {posicao} é inválida para a lista com {len(self)} elementos'
 
-            # CONDICAO 1: insercao se a circulo estiver vazio
+            # CONDICAO 1: insercao se a lista estiver vazia
             if (self.estaVazia()):
                 self.__head = No(carga)
                 self.__tamanho += 1
                 return
             
-            # CONDICAO 2: insercao na primeira posicao em uma círculo com pelo menos uma pessoa.
+            # CONDICAO 2: insercao na primeira posicao em uma lista nao vazia
             if ( posicao == 1):
                 novo = No(carga)
                 novo.prox = self.__head
@@ -97,7 +109,7 @@ class circulo:
                 self.__tamanho += 1
                 return
 
-            # CONDICAO 3: insercao após a primeira posicao em circulo nao vazio
+            # CONDICAO 3: insercao apos a primeira posicao em lista nao vazia
             cursor = self.__head
             contador = 1
             while ( contador < posicao-1):
@@ -110,18 +122,13 @@ class circulo:
             self.__tamanho += 1
 
         except AssertionError:
-            raise circuloException(f'Digite um nome válido.')
-        
-    def inicializador(self, play:str):
-        for i in range(4,13+1):
-            print(self)
-
+            raise ListaException(f'A posicao não pode ser um número negativo ou 0 (zero)')
 
 
     def remover(self, posicao:int)->any:
         try:
-            assert not self.estaVazia(), 'Círculo vazio'
-            assert posicao > 0 and posicao <= len(self), f'Posição {posicao} é inválida para a circulo com {len(self)} pessoas.'
+            assert not self.estaVazia(), 'Lista está vazia'
+            assert posicao > 0 and posicao <= len(self), f'Posição {posicao} é inválida para a lista com {len(self)} elementos'
 
             cursor = self.__head
             contador = 1
@@ -139,13 +146,12 @@ class circulo:
 
             self.__tamanho -= 1
             return carga
-        
         except AssertionError as ae:
-            raise circuloException(ae)
-        
+            raise ListaException(ae)
+
         
     def __str__(self)->str:
-        s = 'Participantes -> [ '
+        s = 'head->[ '
         cursor = self.__head
         while( cursor is not None ):
             s += f'{cursor.carga}, '
