@@ -1,3 +1,5 @@
+import numpy as np
+
 class PilhaException(Exception):
     """Classe de exceção lançada quando uma violação de acesso aos elementos
        da pilha é identificada.
@@ -165,24 +167,3 @@ class Pilha:
         s = s.rstrip(',') # remove a última vírgula
         s += ']<-topo'
         return s
-
-if __name__ == '__main__':
-       
-
-    def imprimeInvertido(str):
-        p = Pilha()
-        for s in str:
-            if (s==' '):
-                try:
-                    while(True):
-                        print(p.desempilha(),end='')
-                except:
-                    print(' ',end='')
-            else:
-                p.empilha(s)
-        if not p.estaVazia():
-            try:
-                while(True):
-                    print(p.desempilha(),end='')
-            except:
-                pass

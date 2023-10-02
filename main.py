@@ -1,4 +1,4 @@
-from circuloBomba import circulo, circuloException
+from ListaSimplesmenteEncadeada import circulo, circuloException
 
 rodada1 = circulo()
 """

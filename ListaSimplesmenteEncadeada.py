@@ -1,4 +1,4 @@
-from eliminados import PilhaDeEliminados
+from pilhaSequencial import Pilha
 
 class circuloException(Exception):
     def __init__(self,mensagem):
@@ -7,7 +7,7 @@ class circuloException(Exception):
         """
         super().__init__(mensagem)
 
-
+#classe que cria os links
 class No:
     """
     Classe de objetos para um nó dinâmico na mémoria. Neste caso, está adaptado para sustentar a lógica circular que o jogo Círculo da Bomba nessecita para funcionar.
