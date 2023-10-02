@@ -1,4 +1,4 @@
-from eliminados import PilhaDeEliminados
+from pilhaSequencial import Pilha
 
 class circuloException(Exception):
     def __init__(self,mensagem):
