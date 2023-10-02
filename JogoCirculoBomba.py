@@ -1,5 +1,5 @@
 from ListaSimplesmenteEncadeada import *
-from PilhaSimplesmenteEncadeade import estaVazia, empilha
+from PilhaSimplesmenteEncadeada import estaVazia, empilha
 
 
 
