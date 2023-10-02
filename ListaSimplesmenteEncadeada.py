@@ -8,7 +8,7 @@ class No:
         self.__carga = carga
         self.__prox = None
         self.__ant = None
-    
+
     @property
     def carga(self):
         return self.__carga
@@ -16,7 +16,8 @@ class No:
     @property
     def prox(self):
         return self.__prox
-    
+
+
     @property
     def ant(self):
         return self.__ant
@@ -24,14 +25,14 @@ class No:
     @carga.setter
     def carga(self, novaCarga):
         self.__carga = novaCarga
-    
-    @ant.setter
-    def ant(self, novaAnt):
-        self.__carga = novaAnt
 
     @prox.setter
     def prox(self, novoProx):
         self.__prox = novoProx
+
+    @ant.setter
+    def ant(self, novoAnt):
+    self.__carga = novoAnt
 
     def __str__(self):
         return f'{self.__carga}'

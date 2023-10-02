@@ -1,8 +1,8 @@
-from ListaSimplesmenteEncadeada import circulo, circuloException
+from ListaSimplesmenteEncadeada import *
 
-rodada1 = circulo()
+rodada1 = Lista()
 """
-Instancia o primeiro objeto da classe circulo. Aqui definido como a primeira rodada do jogo.
+Instancia o primeiro objeto da classe lista. Aqui definido como a primeira rodada do jogo.
 
 """
 
@@ -14,7 +14,7 @@ try:
         rodada1.inserir(i, input('Jogador: '))
     print(rodada1)
     
-except circuloException as ae:
+except ListaException as ae:
     print(ae)
 
 #if rodada1.estaVazia():
