@@ -17,7 +17,6 @@ class No:
     def prox(self):
         return self.__prox
 
-
     @property
     def ant(self):
         return self.__ant
