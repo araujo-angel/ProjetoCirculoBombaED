@@ -69,3 +69,22 @@ pilha = []
         lst.remover(posicao)
         print(lst)
         step += 1
+
+
+#relação professor -> nosso código
+    Lista.preparaPercurso(1)
+    temp =  random.randint(4, 16)
+    while (temp < qtdVencedores):
+        cont = 0
+        while(Lista.temProximo()):
+            carga = Lista.pedirProximo()
+            print(carga)
+            cont += 1
+            if (cont < len(Lista)-1):
+                break
+        posicao = Lista.busca(carga)
+        Pilha.empilha(carga)
+        print(f'Removido: {carga}')
+        Lista.remover(posicao)
+        #print(f'Participantes: {Lista}')
+        temp += 1
