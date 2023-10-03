@@ -56,4 +56,3 @@ class Jogo:
         """
         jogo = open('jogo.txt','a')
         jogo.write (str) # o que é isso? esta certo mesmo?
-        jogo.close()
