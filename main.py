@@ -1,11 +1,8 @@
-
-
-
+from jogo import *
+"""
+Aqui é instanciado o objeto da classe Jogo.
+"""
 rodada1 = Jogo()
-rodada = Lista()
-pilha = Pilha()
-
-#main
 
 
 try:
