@@ -1,5 +1,3 @@
-from PilhaSimplesmenteEncadeada import *
-
 class Node:
     def __init__(self, carga):
         self.__carga = carga
