@@ -4,7 +4,11 @@ import random
 
 class Jogo:
     def __init__(self):
-        self.jogo = None
+        """
+        No construtor da classe jogo, criamos os atributos jogadores e removidos e instanciamos a lista e a pilha nos mesmos.
+        """
+        self.__jogadores = Lista()
+        self.__removidos = Pilha()
 
 
     def __criar__(self):
@@ -47,10 +51,9 @@ class Jogo:
         return s
 
     def salvar_jogo(nome):
+        """
+        Método que salva a rodada do jogo atual.
+        """
         jogo = open('jogo.txt','a')
         jogo.write (str) # o que é isso? esta certo mesmo?
         jogo.close()
-"""
-Instancia os objetos da classe jogo, rodada e pilha.
-
-"""
