@@ -50,7 +50,41 @@ class Jogo:
         jogo = open('jogo.txt','a')
         jogo.write (str) # o que é isso? esta certo mesmo?
         jogo.close()
-"""
-Instancia os objetos da classe jogo, rodada e pilha.
 
-"""
+
+#professor aula remota
+pilha = []
+    lst.preparaPercurso(1)
+    step = 0
+    while (step < 3): # A musica vai tocar e parar 3 vezes
+        cont = 0
+        while(lst.temProximo()):
+            carga = lst.pedirProximo()
+            print(carga)
+            cont += 1
+            if (cont == 5):
+                break
+        posicao = lst.busca(carga)
+        pilha.append(carga)
+        lst.remover(posicao)
+        print(lst)
+        step += 1
+
+
+#relação professor -> nosso código
+    Lista.preparaPercurso(1)
+    temp =  random.randint(4, 16)
+    while (temp < qtdVencedores):
+        cont = 0
+        while(Lista.temProximo()):
+            carga = Lista.pedirProximo()
+            print(carga)
+            cont += 1
+            if (cont < len(Lista)-1):
+                break
+        posicao = Lista.busca(carga)
+        Pilha.empilha(carga)
+        print(f'Removido: {carga}')
+        Lista.remover(posicao)
+        #print(f'Participantes: {Lista}')
+        temp += 1
