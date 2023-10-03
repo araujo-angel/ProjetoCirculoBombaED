@@ -1,10 +1,7 @@
-from PilhaSimplesmenteEncadeada import *
-
 class Node:
     def __init__(self, carga):
         self.__carga = carga
         self.__next = None
-        self.__ponteiro = None
 
     @property
     def next(self):
@@ -28,7 +25,6 @@ class Node:
     def __str__(self):
         return str(self.__carga)
 
-
 class ListaException(Exception):
     """Classe de exceção lançada quando uma violação no acesso aos elementos
        da lista, indicado pelo usuário, é identificada.
@@ -45,7 +41,27 @@ class Lista:
     def __init__(self):
         self.__head = None
         self.__tamanho = 0
+        self.__ponteiro = None
                 
+    def preparaPercurso(self, posicao:int):
+        '''
+        prepara o ponteiro para percorrer a lista a partir do nó correspondente
+        à posição indicada.
+        '''
+        self.__ponteiro = self.__getNo(posicao)
+        self.__ponteiro = self.__head
+
+    def temProximo(self):
+        return self.__ponteiro != None
+    
+    def pedirProximo(self):
+        '''
+        Obtém a carga do nó apontado pelo ponteiro e avança o ponteiro para o
+        próximo nó da lista.
+        '''
+        carga = self.__ponteiro.carga
+
+
     def estaVazia(self):
         return self.__tamanho == 0
 
