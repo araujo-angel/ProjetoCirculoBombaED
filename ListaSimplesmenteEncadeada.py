@@ -1,3 +1,4 @@
+from PilhaSimplesmenteEncadeada import *
 
 class Node:
     def __init__(self, carga):
@@ -96,7 +97,7 @@ class Lista:
         contador = 0
         
         while(True):
-            contador+=1
+            contador += 1
             if( cursor.carga == key):
                 return contador 
         
@@ -176,6 +177,7 @@ class Lista:
                     cursor = cursor.next
                 
                 carga = self.__head.carga
+                Pilha.empilha(carga)
                 self.__head = self.__head.next
                 cursor.next = self.__head
             else:
@@ -183,11 +185,11 @@ class Lista:
                 contador = 1
                 while (contador < posicao - 1):
                     cursor = cursor.next
-                    contador+=1
+                    contador += 1
                 apaga = cursor.next
                 carga = apaga.carga
+                Pilha.empilha(apaga)
                 cursor.next = apaga.next
-                
             self.__tamanho -= 1
             return carga
         
@@ -199,7 +201,7 @@ class Lista:
     def __str__(self):
         str = 'Lista: [ '
         if self.estaVazia():
-            str+= ']'
+            str += ']'
             return str
 
         cursor = self.__head

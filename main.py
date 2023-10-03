@@ -1,4 +1,14 @@
 from ListaSimplesmenteEncadeada import *
+from PilhaSimplesmenteEncadeada import *
+
+class Jogo:
+    def __init__(self, rodada):
+        self.__rodada = rodada
+
+    def salvar_jogo(nome, rodada):
+    jogo = open('jogo.txt','w')
+    for i in range(qtdJogadores):
+        jogo.write('Eliminados: ', )
 
 rodada1 = Lista()
 """
@@ -7,23 +17,23 @@ Instancia o primeiro objeto da classe lista. Aqui definido como a primeira rodad
 """
 
 try:
+    qtdJogadores = int(input('Diga a quantidade de jogadores: ')) 
     qtdVencedores = int(input('Diga a quantidade de vencedores no jogo: '))
-
-    qtdJogadores = int(input('Diga a quantidade de jogadores: '))
-    for i in range(1,qtdJogadores+1):
-        rodada1.inserir(i, input('Jogador: '))
+    if qtdVencedores > 0 and qtdVencedores <= (qtdJogadores - 1):
+        for i in range(1, qtdJogadores+1):
+            rodada1.inserir(i, input('Jogador: '))
+    
     print(rodada1)
     
 except ListaException as ae:
     print(ae)
 
-#if rodada1.estaVazia():
-#  print('rodada1 esta vazia.')
-#     carga = rodada1.remover(1)
-#     print('Carga removida:', carga)
-#     print(rodada1)
 
-#     conteudo = rodada1.elemento(3)
+carga = rodada1.remover(1)
+print('Jogador removido:', carga)
+print(rodada1)
+
+conteudo = rodada1.elemento(3)
 #     print(f'Elemento(3): {conteudo}')
 #     posicao = rodada1.busca(50)
 #     print(f'Posicao do elemento 50: {posicao}')
