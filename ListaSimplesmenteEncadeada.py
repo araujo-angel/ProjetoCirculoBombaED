@@ -177,7 +177,6 @@ class Lista:
                     cursor = cursor.next
                 
                 carga = self.__head.carga
-                Pilha.empilha(carga)
                 self.__head = self.__head.next
                 cursor.next = self.__head
             else:
@@ -188,7 +187,6 @@ class Lista:
                     contador += 1
                 apaga = cursor.next
                 carga = apaga.carga
-                Pilha.empilha(apaga)
                 cursor.next = apaga.next
             self.__tamanho -= 1
             return carga

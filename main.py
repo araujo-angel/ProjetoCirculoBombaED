@@ -1,16 +1,44 @@
 from ListaSimplesmenteEncadeada import *
 from PilhaSimplesmenteEncadeada import *
+import random
 
 class Jogo:
-    def __init__(self, rodada):
-        self.__rodada = rodada
+    def __init__(self):
+        self.jogo = None
+        
+    
+    def __criar__(self):
+        rodada = Lista.inserir
+        return rodada
 
-    def salvar_jogo(nome, rodada):
-    jogo = open('jogo.txt','w')
-    for i in range(qtdJogadores):
-        jogo.write('Eliminados: ', )
 
-rodada1 = Lista()
+    def __inicializador__(self, qtdJogadores, qtdVencedores):
+        while qtdVencedores < (qtdJogadores - 1) and qtdVencedores > 0:
+            temp = random.randint(4, 16)
+            for rodada in range(temp):
+                if temp == rodada[i]:
+                    removido = rodada.remove(i)
+                    Pilha.empilha(removido)
+
+
+    def __str__(self)->str: 
+        s = 'Eliminados: '
+        cursor = self.__topo
+        while( cursor is not None ):
+            s += f'{cursor.carga}, '
+            cursor = cursor.prox
+        s = s.rstrip('< ')
+        s += ' '
+        return s
+    
+    def salvar_jogo(nome):
+        jogo = open('jogo.txt','a')
+        jogo.write (str)
+        jogo.close()
+
+    
+
+rodada1 = Jogo()
 """
 Instancia o primeiro objeto da classe lista. Aqui definido como a primeira rodada do jogo.
 
@@ -19,21 +47,20 @@ Instancia o primeiro objeto da classe lista. Aqui definido como a primeira rodad
 try:
     qtdJogadores = int(input('Diga a quantidade de jogadores: ')) 
     qtdVencedores = int(input('Diga a quantidade de vencedores no jogo: '))
-    if qtdVencedores > 0 and qtdVencedores <= (qtdJogadores - 1):
-        for i in range(1, qtdJogadores+1):
-            rodada1.inserir(i, input('Jogador: '))
-    
+    for i in range(1, qtdJogadores+1):
+        rodada1.__criar__ = (i, input('Jogador: '))
+    rodada1.__inicializador__(qtdJogadores, qtdVencedores)
     print(rodada1)
     
 except ListaException as ae:
     print(ae)
 
 
-carga = rodada1.remover(1)
-print('Jogador removido:', carga)
-print(rodada1)
+# carga = rodada1.remover(1)
+# print('Jogador removido:', carga)
+# print(rodada1)
 
-conteudo = rodada1.elemento(3)
+# conteudo = rodada1.elemento(3)
 #     print(f'Elemento(3): {conteudo}')
 #     posicao = rodada1.busca(50)
 #     print(f'Posicao do elemento 50: {posicao}')
