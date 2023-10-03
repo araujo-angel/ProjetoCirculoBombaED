@@ -4,7 +4,11 @@ import random
 
 class Jogo:
     def __init__(self):
-        self.jogo = None
+        """
+        No construtor da classe jogo, criamos os atributos jogadores e removidos e instanciamos a lista e a pilha nos mesmos.
+        """
+        self.__jogadores = Lista()
+        self.__removidos = Pilha()
 
 
     def __criar__(self):
@@ -29,26 +33,6 @@ class Jogo:
                 if j > len(rodada):
                     j = 1
                 # como volto para o 0 se o temp for maior que o tamanho da lista?
-                if temp == i+1:
-                    removido = rodada.remover(j)
-                    pilha.empilha(removido)
-                    print(f'Removido: {removido}')
-                j += 1
-
-
-    def __str__(self)->str:
-        s = 'Eliminados: '
-        cursor = self.__topo
-        while( cursor is not None ):
-            s += f'{cursor.carga}, '
-            cursor = cursor.prox
-        s = s.rstrip('< ')
-        s += ' '
-        return s
-
-    def salvar_jogo(nome):
-        jogo = open('jogo.txt','a')
-        jogo.write (str) # o que é isso? esta certo mesmo?
         jogo.close()
 
 
@@ -88,3 +72,27 @@ pilha = []
         Lista.remover(posicao)
         #print(f'Participantes: {Lista}')
         temp += 1
+
+                if temp == i+1:
+                    removido = rodada.remover(j)
+                    pilha.empilha(removido)
+                    print(f'Removido: {removido}')
+                j += 1
+
+
+    def __str__(self)->str:
+        s = 'Eliminados: '
+        cursor = self.__topo
+        while( cursor is not None ):
+            s += f'{cursor.carga}, '
+            cursor = cursor.prox
+        s = s.rstrip('< ')
+        s += ' '
+        return s
+
+    def salvar_jogo(nome):
+        """
+        Método que salva a rodada do jogo atual.
+        """
+        jogo = open('jogo.txt','a')
+        jogo.write (str) # o que é isso? esta certo mesmo?
