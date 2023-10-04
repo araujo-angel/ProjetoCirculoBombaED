@@ -2,6 +2,7 @@ class Node:
     def __init__(self, carga):
         self.__carga = carga
         self.__next = None
+        self.__ponteiro = None
 
     @property
     def next(self):
@@ -25,6 +26,7 @@ class Node:
     def __str__(self):
         return str(self.__carga)
 
+
 class ListaException(Exception):
     """Classe de exceção lançada quando uma violação no acesso aos elementos
        da lista, indicado pelo usuário, é identificada.
@@ -37,29 +39,40 @@ class ListaException(Exception):
 
 
 class Lista:
-    # constructor that initializes an empty round linked list
+    #construtor que inicializa uma lista encadeada circular vazia
     def __init__(self):
         self.__head = None
         self.__tamanho = 0
         self.__ponteiro = None
                 
+
     def preparaPercurso(self, posicao:int):
         '''
-        prepara o ponteiro para percorrer a lista a partir do nó correspondente
-        à posição indicada.
+        Prepara o ponteiro para percorrer a lista a partir do nó correspondente
+        à  posicao indicada.
         '''
-        self.__ponteiro = self.__getNo(posicao)
+        #getNo() retorna o nó correspondente à posicao indicada. 
+        #self.__ponteiro = self.__getNo(posicao)
+        
         self.__ponteiro = self.__head
+    
+    def pointer(self):
+        '''
+        funcao criada para capturar o pointer da rodada
+        '''
+        return self.__ponteiro.carga
 
     def temProximo(self):
         return self.__ponteiro != None
-    
+
     def pedirProximo(self):
         '''
-        Obtém a carga do nó apontado pelo ponteiro e avança o ponteiro para o
+        obtem a carga do nó apontado pelo ponteiro e avança o ponteiro para o
         próximo nó da lista.
         '''
         carga = self.__ponteiro.carga
+        self.__ponteiro = self.__ponteiro.next
+        return carga
 
 
     def estaVazia(self):
@@ -113,7 +126,7 @@ class Lista:
         contador = 0
         
         while(True):
-            contador += 1
+            contador+=1
             if( cursor.carga == key):
                 return contador 
         
@@ -200,10 +213,11 @@ class Lista:
                 contador = 1
                 while (contador < posicao - 1):
                     cursor = cursor.next
-                    contador += 1
+                    contador+=1
                 apaga = cursor.next
                 carga = apaga.carga
                 cursor.next = apaga.next
+                
             self.__tamanho -= 1
             return carga
         
@@ -215,7 +229,7 @@ class Lista:
     def __str__(self):
         str = 'Lista: [ '
         if self.estaVazia():
-            str += ']'
+            str+= ']'
             return str
 
         cursor = self.__head
