@@ -32,12 +32,12 @@ class No:
 
 class Pilha:
     """A classe Pilha implementa a estrutura de dados "Pilha".
-       Técnica: <Encadeamento/Sequencial>
-       A classe foi desenvolvida de maneira a permitir que qualquer tipo de dado
-       seja armazenado como carga de um nó.
+    Técnica: <Encadeamento/Sequencial>
+    A classe foi desenvolvida de maneira a permitir que qualquer tipo de dado
+    seja armazenado como carga de um nó.
 
-     Atributos:
-     ---------------------
+    Atributos:
+    ---------------------
         *definir a lista de atributos*
     """
     def __init__(self):
@@ -57,7 +57,7 @@ class Pilha:
             p = Pilha()
             ...   # considere que temos internamente na pilha [10,20,30,40]<- topo
             if(p.estaVazia()): 
-               # instrucoes quando a pilha estiver vazia
+            # instrucoes quando a pilha estiver vazia
         """
         return self.__topo == None
 
@@ -79,18 +79,18 @@ class Pilha:
 
         Args:
             posicao (int): um número correpondente à ordem do elemento existente.
-                           Sentido: do topo em direção à base
+            Sentido: do topo em direção à base
         
         Returns:
             Any: a carga armazenada no elemento correspondente à posição indicada.
 
         Raises:
             PilhaException: Exceção lançada quando uma posição inválida é
-                  fornecida pelo usuário. São inválidas posições que se referem a:
-                  (a) números negativos
-                  (b) zero
-                  (c) número natural correspondente a uma posição  que excede a
-                      quantidade de elementos da lista.                      
+                fornecida pelo usuário. São inválidas posições que se referem a:
+                (a) números negativos
+                (b) zero
+                (c) número natural correspondente a uma posição  que excede a
+                quantidade de elementos da lista.                      
         Examples:
             p = Pilha()
             ...   # considere que temos internamente a pilha [10,20,30,40]<-topo
@@ -124,11 +124,11 @@ class Pilha:
         
         Returns:
             int: um número inteiro representando a posição, na pilha, em que foi
-                 encontrada a chave.
+            encontrada a chave.
 
         Raises:
             PilhaException: Exceção lançada quando o argumento "key"
-                  não está presente na pilha.
+            não está presente na pilha.
 
         Examples:
             p = Pilha()
@@ -155,7 +155,7 @@ class Pilha:
 
         Raises:
             PilhaException: Exceção lançada quando se tenta consultar o topo de uma
-                   uma pilha vazia
+            uma pilha vazia
                     
         Examples:
             p = Pilha()
@@ -190,7 +190,7 @@ class Pilha:
             sua carga correspondente.
     
         Returns:
-           any: a carga armazenada no elemento removido
+        any: a carga armazenada no elemento removido
 
         Raises:
             PilhaException: Exceção lançada quando se tenta remover algo de uma pilha vazia
@@ -215,7 +215,7 @@ class Pilha:
             topo em direção à base
 
         Returns:
-           str: a carga dos elementos da pilha, do topo até a base
+        str: a carga dos elementos da pilha, do topo até a base
         """  
         s = 'topo->[ '
         cursor = self.__topo
