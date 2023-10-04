@@ -31,9 +31,9 @@ class Jogo:
             print(f'Participantes: {rodadaParticipantes}')
             print(f'Rodada: {rodada}')
 
-            Lista.preparaPercurso(1)
+            Lista.preparaPercurso(1)#alterar
             temp =  random.randint(4, 16)
-            while (temp > qtdVencedores):
+            while (qtdVencedores != qtdJogadores):
                 cont = 0
                 while(Lista.temProximo()):
                     carga = Lista.pedirProximo()
@@ -69,6 +69,7 @@ class Jogo:
         """
         jogo = open('jogo.txt','a')
         jogo.write (str) # o que é isso? esta certo mesmo?
+        jogo.close()
 
 
 
