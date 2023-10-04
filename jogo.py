@@ -11,12 +11,12 @@ class Jogo:
         self.__removidos = Pilha()
 
 
-    def __criar__(self):
+    def __criar__(self, qtdJogadores):
         '''
         Função para a construção da rodada como uma lista.
         '''
-        if len(rodada) <= qtdJogadores:
-            rodadaParticipantes = Lista.inserir # o que está sendo inserido? Onde está sendo inserido?
+        if len(self.__jogadores) <= qtdJogadores:
+            rodadaParticipantes = self.__jogadores.inserir
             return rodada
 
 
@@ -25,36 +25,33 @@ class Jogo:
         Função que têm a lógica do jogo e todo seu funcionamento.
         """
         j = 1 #o que é esse j?
-        rodada = 0 #contador de rodadas no jogo
+        rodada = 0
 
-        while len(rodada) > qtdVencedores:
+        while len(self.__jogadores) > qtdVencedores:
             rodada += 1 
             print(f'Participantes: {rodadaParticipantes}')
             print(f'Rodada: {rodada}')
 
-            Lista.preparaPercurso(1)#alterar
+            self.__jogadores.preparaPercurso(1)#alterar
             temp =  random.randint(4, 16)
             while (qtdVencedores != qtdJogadores):
                 cont = 0
-                while(Lista.temProximo()):
-                    carga = Lista.pedirProximo()
+                while(self.__jogadores.temProximo()):
+                    carga = self.__jogadores.pedirProximo()
                     print(carga)
                     cont += 1
-                    if (cont < len(Lista)-1):
+                    if (cont < len(self.__jogadores)-1):
                         break
-                posicao = Lista.busca(carga)
-                Pilha.empilha(carga)
+                posicao = self.__jogadores.busca(carga)
+                self.__removidos.empilha(carga) #aqui teria que ser self.__removidos não? já que ele recebe a pilha/a mesma coia para a lista
                 print(f'Removido: {carga}')
-                Lista.remover(posicao)
-                #print(f'Participantes: {Lista}')
-                temp += 1
-                if temp == i+1:
-                    removido = rodada.remover(j)
-                    pilha.empilha(removido)
-                    print(f'Removido: {removido}')
-                j += 1
+                self.__jogadores.remover(posicao)
+
 
     def __str__(self)->str:
+        '''
+        Método que mostra os eliminados 
+        '''
         s = 'Eliminados: '
         cursor = self.__topo
         while( cursor is not None ):
@@ -65,32 +62,9 @@ class Jogo:
         return s
 
     def salvar_jogo(nome):
-        """
+        '''
         Método que salva a rodada do jogo atual.
-        """
+        '''
         jogo = open('jogo.txt','a')
-        jogo.write (str) # o que é isso? esta certo mesmo?
+        jogo.write (str)
         jogo.close()
-
-
-
-#professor aula remota
-# pilha = []
-#     lst.preparaPercurso(1)
-#     step = 0
-#     while (step < 3): # A musica vai tocar e parar 3 vezes
-#         cont = 0
-#         while(lst.temProximo()):
-#             carga = lst.pedirProximo()
-#             print(carga)
-#             cont += 1
-#             if (cont == 5):
-#                 break
-#         posicao = lst.busca(carga)
-#         pilha.append(carga)
-#         lst.remover(posicao)
-#         print(lst)
-#         step += 1
-
-
-
