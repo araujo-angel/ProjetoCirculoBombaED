@@ -15,8 +15,9 @@ class Jogo:
         '''
         Função para a construção da rodada como uma lista.
         '''
-        rodadaParticipantes = Lista.inserir # o que está sendo inserido? Onde está sendo inserido?
-        return rodada
+        if len(rodada) <= qtdJogadores:
+            rodadaParticipantes = Lista.inserir # o que está sendo inserido? Onde está sendo inserido?
+            return rodada
 
 
     def __inicializador__(self, qtdVencedores):
