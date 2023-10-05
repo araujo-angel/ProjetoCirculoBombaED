@@ -30,8 +30,6 @@ class Jogo:
             assert posicao > 0 and posicao <= len(self.__jogadores)+1, f'Posição inválida. O jogo contém {self.__tamanho} participantes.'
             self.__jogadores.inserir(posicao, participante)#aqui nosso objeto da classe lista insere os jogadores
 
-        except TypeError:
-            raise JogoException(f'O jogador deve ser um texto.')
         except AssertionError as ae:
             raise ListaException(ae)
 
