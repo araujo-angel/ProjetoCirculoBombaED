@@ -17,25 +17,31 @@ try:
             raise JogoException(f'A resposta deve ser S ou N.')
 
         if puxarArquivo == "S":
-            qtd_jogadores = int(input('Diga a quantidade de jogadores: '))
             if os.path.isfile('jogo.txt'):
                 with open('jogo.txt', 'r') as arq:
                     arquivo = arq.readlines()
                     listaJogadores = arquivo[0].split(',')
-                    for i in range(qtd_jogadores):
+                    for i in range(len(listaJogadores)):
                         jogo.addParticipantes(i+1, listaJogadores[i])
-                        jogo.__strLista__()#nossa lista de jogadores
                         arq.close()
-                qtd_vencedores = int(input('Diga a quantidade de vencedores no jogo: '))
-                jogo.addQtdVencedores(qtd_vencedores)
+                try:
+                    qtd_vencedores = int(input('Diga a quantidade de vencedores no jogo: '))
+                    jogo.addQtdVencedores(qtd_vencedores)
+                except ValueError:
+                    raise JogoException(f'A quantidade de vencedores deve ser um número inteiro.')
         if puxarArquivo == "N":
-            qtd_jogadores = int(input('Diga a quantidade de jogadores: '))
+            try:
+                qtd_jogadores = int(input('Diga a quantidade de jogadores: '))
+            except ValueError:
+                    raise JogoException(f'A quantidade de jogadores deve ser um número inteiro.')
             for i in range(1, qtd_jogadores+1):
                 jogo.addParticipantes(i, input('Jogador: '))#i é a posição e o input é o/a participante, ou seja, são os parametros que exigidos na função addParticipantes lá da classe jogo.
-            qtd_vencedores = int(input('Diga a quantidade de vencedores no jogo: '))
-            jogo.addQtdVencedores(qtd_vencedores)
+            try:
+                qtd_vencedores = int(input('Diga a quantidade de vencedores no jogo: '))
+                jogo.addQtdVencedores(qtd_vencedores)
+            except ValueError:
+                raise JogoException(f'A quantidade de vencedores deve ser um número inteiro.')
 
-        jogo.__strLista__()#nossa lista de jogadores
 
         jogo.executar()#aqui o jogo é executado
 
