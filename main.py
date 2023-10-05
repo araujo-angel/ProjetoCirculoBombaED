@@ -17,15 +17,23 @@ try:
 
         jogo.executar()#aqui o jogo é executado
 
-        jogo.__str__()
+        jogo.__str__()#mostra a pilha de removidos
 
-        #jogo.salvar() #salva as informações dos jogadores
+        jogo.salvar() #salva as informações dos jogadores
 
-        resposta = input('Deseja jogar novamente?: (S)im/(N)ão: ').upper()#quando o jogo acaba, sai do laço e entra nesse input para saber se o/a jogador/a quer jogar novamente
-        if resposta != 'S' and resposta != 'N':
-                raise JogoException(f'A resposta deve ser S ou N.')
-        if resposta == "N":
+        continuar = input('Deseja jogar novamente? (S)im/(N)ão: ').upper()#quando o jogo acaba, sai do laço e entra nesse input para saber se o/a jogador/a quer jogar novamente
+        if continuar != 'S' and continuar != 'N':
+            raise JogoException(f'A resposta deve ser S ou N.')
+        if continuar == "N":
             jogar = False
+        
+        puxarArquivo = input('Deseja ver os dados dos participantes? (S)im/(N)ão: ').upper()
+        if puxarArquivo != 'S' and puxarArquivo != 'N':
+            raise JogoException(f'A resposta deve ser S ou N.')
+        if puxarArquivo == "S":
+            jogo.mostrar() #mostra as informações  salvas dos jogadores
+        if puxarArquivo == "N":
+            continuar
 
 except JogoException as ae:
     print(ae)
