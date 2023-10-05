@@ -1,0 +1,98 @@
+Participantes: Lista: [ Ananda, Angelica, Letica, Maira ]
+Rodada: 1
+Pointer: Ananda
+K: 12
+Removido: Maira
+
+Participantes: Lista: [ Ananda, Angelica, Letica ]
+Rodada: 2
+Pointer: Ananda
+K: 13
+Removido: Ananda
+
+Participantes: Lista: [ Angelica, Letica ]
+Rodada: 3
+Pointer: Angelica
+K: 5
+Removido: Angelica
+
+Vencedor(es) após 3 rodadas: <<< Lista: [ Letica ] >>>
+Percurso para a vitória: Angelica < Ananda < Maira
+
+
+
+
+Participantes: Lista: [ Felipe, Marcelo, Arthur, Jackson, Letica ]
+Rodada: 1
+Pointer: Felipe
+K: 11
+Removido: Felipe
+
+Participantes: Lista: [ Marcelo, Arthur, Jackson, Letica ]        
+Rodada: 2
+Pointer: Marcelo
+K: 4
+Removido: Letica
+
+Participantes: Lista: [ Marcelo, Arthur, Jackson ]
+Rodada: 3
+Pointer: Marcelo
+K: 5
+Removido: Arthur
+
+Vencedor(es) após 3 rodadas: <<< Lista: [ Marcelo, Jackson ] >>>
+Percurso para a vitória: Arthur < Letica < Felipe
+
+
+
+
+Participantes: Lista: [ Ana, Luiza, Joana, Luke, Jonathan, Luiz, Alex, Marcelo, Jackson ]
+Rodada: 1
+Pointer: Ana
+K: 5
+Removido: Jonathan
+
+Participantes: Lista: [ Ana, Luiza, Joana, Luke, Luiz, Alex, Marcelo, Jackson ]
+Rodada: 2
+Pointer: Luiz
+K: 6
+Removido: Luiza
+
+Participantes: Lista: [ Ana, Joana, Luke, Luiz, Alex, Marcelo, Jackson ]
+Rodada: 3
+Pointer: Joana
+K: 10
+Removido: Luiz
+
+Participantes: Lista: [ Ana, Joana, Luke, Alex, Marcelo, Jackson ]
+Rodada: 4
+Pointer: Alex
+K: 14
+Removido: Marcelo
+
+Participantes: Lista: [ Ana, Joana, Luke, Alex, Jackson ]
+Rodada: 5
+Pointer: Jackson
+K: 15
+Removido: Alex
+
+Participantes: Lista: [ Ana, Joana, Luke, Jackson ]
+Rodada: 6
+Pointer: Jackson
+K: 5
+Removido: Jackson
+
+Participantes: Lista: [ Ana, Joana, Luke ]
+Rodada: 7
+Pointer: Ana
+K: 9
+Removido: Luke
+
+Participantes: Lista: [ Ana, Joana ]
+Rodada: 8
+Pointer: Ana
+K: 16
+Removido: Joana
+
+Vencedor(es) após 8 rodadas: <<< Lista: [ Ana ] >>>
+Percurso para a vitória: Joana < Luke < Jackson < Alex < Marcelo < Luiz < Luiza < Jonathan

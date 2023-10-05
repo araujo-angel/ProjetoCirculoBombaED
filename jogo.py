@@ -22,7 +22,7 @@ class Jogo:
         self.__removidos = Pilha() #Aqui nossa pilha é instanciada
         self.__qtdVencedores = 0
 
-    def addParticipantes(self, posicao:int, participante:str):
+    def addParticipantes(self, posicao:int, participante):
         """
         Método que adiciona os participantes na lista.
         """
@@ -51,15 +51,14 @@ class Jogo:
         """
         Método que gera as rodadas do jogo de acordo com as regras do mesmo.
         """
-        temp = random.randint(4, 16)
+        self.__temp = random.randint(4, 16)
         print(f'Participantes: {self.__jogadores}') #nossa lista de jogadores
         print(f'Rodada: {num}') #numero da rodada
         print(f'Pointer: {self.__jogadores.pointer()}') #jogador/a da vez
-        print(f'K: {temp}')#numero de voltas
-        for i in range(temp):
+        print(f'K: {self.__temp}')#numero de voltas
+        for i in range(self.__temp):
             carga = self.__jogadores.pedirProximo()
-            print(f'A bomba está passando por: {carga}') #mostrar qual jogador está com a bomba
-            if i+1 == temp:
+            if i+1 == self.__temp:
                 posicao = self.__jogadores.busca(carga)
                 self.__removidos.empilha(carga)#aqui quem foi removido é passado pra pilha de removidos
                 print(f'Removido: {carga}')
@@ -76,8 +75,7 @@ class Jogo:
             num_rodada += 1
             self.rodada(num_rodada)#nossa função rodada é chamada aqui, de forma que nela, o jogo de fato começa a funcionar de acordo com as regras pré-estabelecidas.
 
-        print(f'Vencedores apos {num_rodada} rodadas: {self.__jogadores}')
-
+        print(f'Vencedor(es) após {num_rodada} rodadas: <<< {self.__jogadores} >>>')
 
     def __str__(self)->str:
         """ Método que retorna a ordenação atual dos elementos da pilha, do
@@ -93,10 +91,23 @@ class Jogo:
         eliminados += ' '
         print (eliminados)
 
-    def salvar(nome):
+
+    # def salvar(self):
+    #     """
+    #     Método que salva os dados a cada rodada do jogo atual.
+    #     """
+    #     jogo = open('jogo.txt', 'a')
+    #     jogo.write(self.__jogadores)
+    #     jogo.write(self.__jogadores.pointer)
+    #     jogo.write(self.__removidos)
+    #     jogo.write(self.__qtdVencedores)
+    #     jogo.write(num_rodada)
+    #     jogo.write(self._temp)
+    #     jogo.close()
+
+    def mostrar(self):
         """
-        Método que salva a rodada do jogo atual.
+        Método que mostra os dados dos jogadores.
         """
-        jogo = open('jogo.txt','a')
-        jogo.write (Jogo.executar)
+        jogo = open('jogo.txt', 'r')
         jogo.close()
