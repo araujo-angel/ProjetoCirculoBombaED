@@ -45,6 +45,9 @@ class Jogo:
             raise ListaException(ae)
     
     def carregarArquivo(self, nomeArquivo:str, jogo:any):
+        """
+        Método que carrega e lê o arquivo txt com o nome dos participantes.
+        """
         with open(nomeArquivo, 'r') as arq:
                     arquivo = arq.readlines()
                     listaJogadores = arquivo[0].split(',')
