@@ -133,7 +133,7 @@ class Lista:
             cursor = cursor.next
             if (cursor == self.__head):
                 break
-          
+
         raise ListaException(f'A chave {key} não está armazenado na lista')
 
 

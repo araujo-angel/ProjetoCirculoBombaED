@@ -2,6 +2,17 @@ from ListaEncadeadaCircular import *
 from PilhaSimplesmenteEncadeada import *
 import random
 
+class JogoException(Exception):
+    """Classe de exceção lançada quando uma violação no acesso aos elementos
+    do jogo, indicado pelo usuário, é identificada.
+    """
+    def __init__(self,msg):
+        """ Construtor padrão da classe, que recebe uma mensagem que se deseja
+        embutir na exceção.
+        """
+        super().__init__(msg)
+
+
 class Jogo:
     def __init__(self):
         """
@@ -11,17 +22,30 @@ class Jogo:
         self.__removidos = Pilha() #Aqui nossa pilha é instanciada
         self.__qtdVencedores = 0
 
-    def addParticipantes(self, posicao, participante):
+    def addParticipantes(self, posicao:int, participante:str):
         """
         Método que adiciona os participantes na lista.
         """
-        self.__jogadores.inserir(posicao, participante)#aqui nossa objeto da classe lista insere os jogadores
-    
-    def addQtdVencedores(self, qtdVencedores):
+        try:
+            assert posicao > 0 and posicao <= len(self.__jogadores)+1, f'Posição inválida. O jogo contém {self.__tamanho} participantes.'
+            self.__jogadores.inserir(posicao, participante)#aqui nosso objeto da classe lista insere os jogadores
+
+        except TypeError:
+            raise JogoException(f'O jogador deve ser um texto.')
+        except AssertionError as ae:
+            raise ListaException(ae)
+
+    def addQtdVencedores(self, qtdVencedores:int):
         """
         Método que recebe a quantidade de vencedores.
         """
-        self.__qtdVencedores = qtdVencedores
+        try:
+            self.__qtdVencedores = qtdVencedores
+
+        except TypeError:
+            raise JogoException(f'A quantidade de vencedores deve ser um número inteiro.')
+        except AssertionError as ae:
+            raise ListaException(ae)
 
     def rodada(self, num):
         """
@@ -31,9 +55,10 @@ class Jogo:
         print(f'Participantes: {self.__jogadores}') #nossa lista de jogadores
         print(f'Rodada: {num}') #numero da rodada
         print(f'Pointer: {self.__jogadores.pointer()}') #jogador/a da vez
-        print(f'K {temp}')#numero de voltas
+        print(f'K: {temp}')#numero de voltas
         for i in range(temp):
             carga = self.__jogadores.pedirProximo()
+            print(f'A bomba está passando por: {carga}') #mostrar qual jogador está com a bomba
             if i+1 == temp:
                 posicao = self.__jogadores.busca(carga)
                 self.__removidos.empilha(carga)#aqui quem foi removido é passado pra pilha de removidos
@@ -52,23 +77,26 @@ class Jogo:
             self.rodada(num_rodada)#nossa função rodada é chamada aqui, de forma que nela, o jogo de fato começa a funcionar de acordo com as regras pré-estabelecidas.
 
         print(f'Vencedores apos {num_rodada} rodadas: {self.__jogadores}')
-        print(f'Percurso para vitoria: {self.__removidos}')
 
 
-#
-#     def __str__(self)->str:
-#         s = 'Eliminados: '
-#         cursor = self.__topo
-#         while( cursor is not None ):
-#             s += f'{cursor.carga}, '
-#             cursor = cursor.prox
-#         s = s.rstrip('< ')
-#         s += ' '
-#         return s
-#
-#     def salvar_jogo(nome):
-#         """
-#         Método que salva a rodada do jogo atual.
-#         """
-#         jogo = open('jogo.txt','a')
-#         jogo.write (str) # o que é isso? esta certo mesmo?
+    def __str__(self)->str:
+        """ Método que retorna a ordenação atual dos elementos da pilha, do
+            topo em direção à base.
+
+        Returns:
+        str: Participantes eliminados do jogo, são elementos da pilha, do topo até a base.
+        """  
+        eliminados = 'Percurso para a vitória: '
+        for i in range (len(self.__removidos)):
+            eliminados += f'{self.__removidos.desempilha()} < ' #mostra os eliminados do último para o primeiro
+        eliminados = eliminados.rstrip('< ') #remove o último <
+        eliminados += ' '
+        print (eliminados)
+
+    def salvar(nome):
+        """
+        Método que salva a rodada do jogo atual.
+        """
+        jogo = open('jogo.txt','a')
+        jogo.write (Jogo.executar)
+        jogo.close()
