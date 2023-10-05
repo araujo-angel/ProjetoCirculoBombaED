@@ -227,7 +227,7 @@ class Lista:
             raise ListaException(ae)
         
     def __str__(self):
-        str = 'Lista: [ '
+        str = ' [ '
         if self.estaVazia():
             str+= ']'
             return str
