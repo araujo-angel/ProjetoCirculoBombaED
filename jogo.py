@@ -47,12 +47,30 @@ class Jogo:
         except AssertionError as ae:
             raise ListaException(ae)
 
+    def __strLista__(self):
+        str = 'Participantes: '
+        cursor = self.__jogadores.__head
+        while( True ):
+            str += f'{cursor}, '
+            cursor = cursor.next
+            if (cursor == self.__jogadores.__head):
+                break
+        str = str[:-2]
+        return str
+
+        # participantes = 'Participantes: '
+        # for i in range (len(self.__jogadores)):
+        #     participantes += f'{self.__jogadores.inserir}, ' #mostra os eliminados do último para o primeiro
+        # participantes = participantes.rstrip(', ') #remove o último <
+        # participantes += ' '
+        # print (participantes)
+
     def rodada(self, num):
         """
         Método que gera as rodadas do jogo de acordo com as regras do mesmo.
         """
         self.__temp = random.randint(4, 16)
-        print(f'Participantes: {self.__jogadores}') #nossa lista de jogadores
+        #print(f'Participantes: {self.__jogadores}') #nossa lista de jogadores
         print(f'Rodada: {num}') #numero da rodada
         print(f'Pointer: {self.__jogadores.pointer()}') #jogador/a da vez
         print(f'K: {self.__temp}')#numero de voltas
@@ -77,7 +95,7 @@ class Jogo:
 
         print(f'Vencedor(es) após {num_rodada} rodadas: <<< {self.__jogadores} >>>')
 
-    def __str__(self)->str:
+    def __strPilha__(self)->str:
         """ Método que retorna a ordenação atual dos elementos da pilha, do
             topo em direção à base.
 
