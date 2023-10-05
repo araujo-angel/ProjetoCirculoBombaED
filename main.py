@@ -19,8 +19,6 @@ try:
 
         jogo.__str__()#mostra a pilha de removidos
 
-        jogo.salvar() #salva as informações dos jogadores
-
         continuar = input('Deseja jogar novamente? (S)im/(N)ão: ').upper()#quando o jogo acaba, sai do laço e entra nesse input para saber se o/a jogador/a quer jogar novamente
         if continuar != 'S' and continuar != 'N':
             raise JogoException(f'A resposta deve ser S ou N.')

@@ -90,24 +90,3 @@ class Jogo:
         eliminados = eliminados.rstrip('< ') #remove o último <
         eliminados += ' '
         print (eliminados)
-
-
-    # def salvar(self):
-    #     """
-    #     Método que salva os dados a cada rodada do jogo atual.
-    #     """
-    #     jogo = open('jogo.txt', 'a')
-    #     jogo.write(self.__jogadores)
-    #     jogo.write(self.__jogadores.pointer)
-    #     jogo.write(self.__removidos)
-    #     jogo.write(self.__qtdVencedores)
-    #     jogo.write(num_rodada)
-    #     jogo.write(self._temp)
-    #     jogo.close()
-
-    def mostrar(self):
-        """
-        Método que mostra os dados dos jogadores.
-        """
-        jogo = open('jogo.txt', 'r')
-        jogo.close()
