@@ -7,6 +7,6 @@ A brincadeira do círculo da bomba começa com a definição das pessoas que ir�
 
 Estruturas de dados utilizadas:
 
-Pilha Encadeada;
+Pilha Encadeada,
 Lista Encadeada, com adaptações para funcionar de maneira circular.
 
