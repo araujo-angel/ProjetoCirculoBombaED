@@ -1,6 +1,7 @@
 from ListaEncadeadaCircular import *
 from PilhaSimplesmenteEncadeada import *
 import random
+from termcolor import colored, cprint
 
 class JogoException(Exception):
     """Classe de exceção lançada quando uma violação no acesso aos elementos
@@ -48,16 +49,16 @@ class Jogo:
         Método que gera as rodadas do jogo de acordo com as regras do mesmo.
         """
         self.__temp = random.randint(4, 16)
-        print(f'Participantes:{self.__jogadores}') #nossa lista de jogadores
+        print(colored(f'Participantes:{self.__jogadores}', attrs=['bold'])) #nossa lista de jogadores
         print(f'Rodada: {num}') #numero da rodada
-        print(f'Pointer: {self.__jogadores.pointer()}') #jogador/a da vez
+        print(colored(f'Pointer: {self.__jogadores.pointer()}', 'blue')) #jogador/a da vez
         print(f'K: {self.__temp}')#numero de voltas
         for i in range(self.__temp):
             carga = self.__jogadores.pedirProximo()
             if i+1 == self.__temp:
                 posicao = self.__jogadores.busca(carga)
                 self.__removidos.empilha(carga)#aqui quem foi removido é passado pra pilha de removidos
-                print(f'Removido: {carga}')
+                print(colored(f'Removido: {carga}', 'red'))  
                 self.__jogadores.remover(posicao)#aqui ele/ela é deletado
 
 
@@ -70,8 +71,7 @@ class Jogo:
         while len(self.__jogadores) > self.__qtdVencedores: #laço que controla as iterações da jogada de acordo com a regra estabelecida.
             num_rodada += 1
             self.rodada(num_rodada)#nossa função rodada é chamada aqui, de forma que nela, o jogo de fato começa a funcionar de acordo com as regras pré-estabelecidas.
-
-        print(f'Vencedor(es) após {num_rodada} rodadas: <<< {self.__jogadores} >>>')
+        print(colored(f'Vencedor(es) após {num_rodada} rodadas: <<< {self.__jogadores} >>>', 'green')) 
 
     def __strPilha__(self)->str:
         """ Método que retorna a ordenação atual dos elementos da pilha, do
