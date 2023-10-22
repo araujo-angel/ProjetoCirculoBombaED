@@ -2,6 +2,7 @@ from ListaEncadeadaCircular import *
 from PilhaSimplesmenteEncadeada import *
 import random
 from termcolor import colored, cprint
+import time
 
 class JogoException(Exception):
     """Classe de exceção lançada quando uma violação no acesso aos elementos
@@ -44,16 +45,6 @@ class Jogo:
         except AssertionError as ae:
             raise ListaException(ae)
     
-    def carregarArquivo(self, nomeArquivo:str, jogo:any):
-        """
-        Método que carrega e lê o arquivo txt com o nome dos participantes.
-        """
-        with open(nomeArquivo, 'r') as arq:
-                    arquivo = arq.readlines()
-                    listaJogadores = arquivo[0].split(',')
-                    for i in range(len(listaJogadores)):
-                        jogo.addParticipantes(i+1, listaJogadores[i])
-                        arq.close()
 
     def rodada(self, num):
         """
@@ -66,6 +57,8 @@ class Jogo:
         print(f'K: {self.__temp}')#numero de voltas
         for i in range(self.__temp):
             carga = self.__jogadores.pedirProximo()
+            print(f'A bomba está passando por: {carga}')
+            time.sleep(1)
             if i+1 == self.__temp:
                 posicao = self.__jogadores.busca(carga)
                 self.__removidos.empilha(carga)#aqui quem foi removido é passado pra pilha de removidos
@@ -84,7 +77,7 @@ class Jogo:
             self.rodada(num_rodada)#nossa função rodada é chamada aqui, de forma que nela, o jogo de fato começa a funcionar de acordo com as regras pré-estabelecidas.
         print(colored(f'Vencedor(es) após {num_rodada} rodadas: <<< {self.__jogadores} >>>', 'green')) 
 
-    def __strPilha__(self)->str:
+    def printPilha(self):
         """ Método que retorna a ordenação atual dos elementos da pilha, do
             topo em direção à base.
 
