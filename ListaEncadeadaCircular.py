@@ -58,7 +58,7 @@ class Lista:
     
     def pointer(self):
         '''
-        funcao criada para capturar o pointer da rodada
+        funcao criada para capturar o pointer
         '''
         return self.__ponteiro.carga
 
